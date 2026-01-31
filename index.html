@@ -52,11 +52,22 @@
             display: flex;
             flex-direction: column;
             border: 1px solid #e2e8f0;
+            align-items: flex-start;
         }
 
         .card:hover { 
             transform: translateY(-5px); 
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Icon Styling */
+        .extension-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            background-color: #f1f5f9;
         }
 
         .card h3 { margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: 1.25rem; }
@@ -69,8 +80,7 @@
             font-weight: bold; 
             text-transform: uppercase;
             letter-spacing: 0.05em;
-            margin-bottom: 0.5rem;
-            align-self: flex-start;
+            margin-bottom: 1rem;
         }
         .status-badge.published { background: #dcfce7; color: #166534; }
         .status-badge.review { background: #fef9c3; color: #854d0e; }
@@ -83,6 +93,7 @@
             gap: 0.5rem;
             flex-wrap: wrap;
             margin-top: auto;
+            width: 100%;
         }
 
         .btn {
@@ -131,6 +142,7 @@
         
         <div class="card">
             <span class="status-badge published">Published</span>
+            <img src="icons/RecordThatChromeTab.png" alt="RecordThatChromeTab Logo" class="extension-icon">
             <h3>RecordThatChromeTab</h3>
             <p>Seamlessly record your current tab for quick demos and tutorials.</p>
             <div class="btn-group">
@@ -140,6 +152,7 @@
 
         <div class="card">
             <span class="status-badge published">Published</span>
+            <img src="icons/My%20YT%20Blocker.png" alt="My YT Blocker Logo" class="extension-icon">
             <h3>My YT Blocker</h3>
             <p>Take control of your focus by blocking specific YouTube content.</p>
             <div class="btn-group">
@@ -150,6 +163,7 @@
 
         <div class="card">
             <span class="status-badge published">Published</span>
+            <img src="icons/SideGem%202.png" alt="SideGem 2 Logo" class="extension-icon">
             <h3>SideGem 2</h3>
             <p>A powerful sidebar assistant to enhance your browsing workflow.</p>
             <div class="btn-group">
@@ -159,6 +173,7 @@
 
         <div class="card">
             <span class="status-badge published">Published</span>
+            <img src="icons/Gemini%20Page%20Summarizer.png" alt="Gemini Page Summarizer Logo" class="extension-icon">
             <h3>Gemini Page Summarizer</h3>
             <p>Instantly summarize web pages using AI directly within your browser.</p>
             <div class="btn-group">
@@ -168,6 +183,7 @@
 
         <div class="card">
             <span class="status-badge published">Published</span>
+            <img src="icons/Full%20Page%20Screen%20Capture%20Tool.png" alt="Full Page Screen Capture Logo" class="extension-icon">
             <h3>Full Page Screen Capture</h3>
             <p>Capture entire webpages, including scrolling areas, in a single image.</p>
             <div class="btn-group">
@@ -177,6 +193,7 @@
 
         <div class="card">
             <span class="status-badge published">Published</span>
+            <img src="icons/QuickURLCopy.png" alt="QuickURLCopy Logo" class="extension-icon">
             <h3>QuickURLCopy</h3>
             <p>One-click utility to copy the current URL to your clipboard.</p>
             <div class="btn-group">
@@ -186,6 +203,7 @@
 
         <div class="card">
             <span class="status-badge review">In Review</span>
+            <img src="icons/TabCapture.png" alt="TabCapture Logo" class="extension-icon">
             <h3>TabCapture</h3>
             <p>Advanced tab capturing capabilities for power users.</p>
             <div class="btn-group">
@@ -197,7 +215,7 @@
 
     <footer>
         <p>&copy; 2026 Vatsal Labs. All rights reserved.</p>
-        <p><a href="privacy.html" class="policy-link">Privacy Policy</a></p>
+        <p><a href="privacy.html" class="policy-link" target="_blank" rel="noopener noreferrer">Privacy Policy</a></p>
     </footer>
 
 </body>
