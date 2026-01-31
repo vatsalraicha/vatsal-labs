@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vatsal Labs - Browser Extensions</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-secondary: #64748b;
+            --chrome-color: #4285F4;
+            --firefox-color: #FF7139;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--card-bg);
+            padding: 3rem 1rem;
+            text-align: center;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        header h1 { margin: 0; font-size: 2.5rem; color: var(--primary-color); }
+        header p { color: var(--text-secondary); margin-top: 0.5rem; font-size: 1.1rem; }
+
+        .container {
+            max-width: 1100px;
+            margin: 3rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e2e8f0;
+        }
+
+        .card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card h3 { margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: 1.25rem; }
+        
+        .status-badge { 
+            display: inline-block; 
+            padding: 0.25rem 0.75rem; 
+            border-radius: 999px; 
+            font-size: 0.75rem; 
+            font-weight: bold; 
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            align-self: flex-start;
+        }
+        .status-badge.published { background: #dcfce7; color: #166534; }
+        .status-badge.review { background: #fef9c3; color: #854d0e; }
+
+        .card p { color: var(--text-secondary); flex-grow: 1; margin-bottom: 1.5rem; }
+
+        /* Button Styles */
+        .btn-group {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            flex: 1;
+            color: white;
+            text-align: center;
+        }
+
+        .btn:hover { opacity: 0.9; text-decoration: none; }
+        
+        .btn-chrome { background-color: var(--chrome-color); }
+        .btn-firefox { background-color: var(--firefox-color); }
+        .btn-disabled { background-color: #cbd5e1; cursor: not-allowed; color: #64748b; }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 4rem;
+            background: var(--card-bg);
+        }
+
+        a.policy-link { color: var(--primary-color); text-decoration: none; }
+        a.policy-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Vatsal Labs</h1>
+        <p>Productivity & Privacy Extensions for Chrome and Firefox</p>
+    </header>
+
+    <div class="container">
+        
+        <div class="card">
+            <span class="status-badge published">Published</span>
+            <h3>RecordThatChromeTab</h3>
+            <p>Seamlessly record your current tab for quick demos and tutorials.</p>
+            <div class="btn-group">
+                <a href="https://chromewebstore.google.com/detail/recordthatchrometab/bapijikfojhbjnpaabpgghmckenknodd" target="_blank" class="btn btn-chrome">Chrome Store</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="status-badge published">Published</span>
+            <h3>My YT Blocker</h3>
+            <p>Take control of your focus by blocking specific YouTube content.</p>
+            <div class="btn-group">
+                <a href="https://chromewebstore.google.com/detail/my-yt-blocker/ddjpielpgnodfjohcgmclcmnlidgfned" target="_blank" class="btn btn-chrome">Chrome</a>
+                <a href="https://addons.mozilla.org/en-US/firefox/addon/my-yt-blocker/" target="_blank" class="btn btn-firefox">Firefox</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="status-badge published">Published</span>
+            <h3>SideGem 2</h3>
+            <p>A powerful sidebar assistant to enhance your browsing workflow.</p>
+            <div class="btn-group">
+                <a href="https://chromewebstore.google.com/detail/sidegem-2/iofbaomimggpkpjbgmhadpgkfhkeoiho" target="_blank" class="btn btn-chrome">Chrome Store</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="status-badge published">Published</span>
+            <h3>Gemini Page Summarizer</h3>
+            <p>Instantly summarize web pages using AI directly within your browser.</p>
+            <div class="btn-group">
+                <a href="https://chromewebstore.google.com/detail/gemini-page-summarizer/jaelijgjppjjnadnmcndakfaejlcchaj" target="_blank" class="btn btn-chrome">Chrome Store</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="status-badge published">Published</span>
+            <h3>Full Page Screen Capture</h3>
+            <p>Capture entire webpages, including scrolling areas, in a single image.</p>
+            <div class="btn-group">
+                <a href="https://addons.mozilla.org/en-US/firefox/addon/full-page-screen-capture-tool/" target="_blank" class="btn btn-firefox">Firefox Add-ons</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="status-badge published">Published</span>
+            <h3>QuickURLCopy</h3>
+            <p>One-click utility to copy the current URL to your clipboard.</p>
+            <div class="btn-group">
+                <a href="https://addons.mozilla.org/en-US/firefox/addon/quickurlcopy/" target="_blank" class="btn btn-firefox">Firefox Add-ons</a>
+            </div>
+        </div>
+
+        <div class="card">
+            <span class="status-badge review">In Review</span>
+            <h3>TabCapture</h3>
+            <p>Advanced tab capturing capabilities for power users.</p>
+            <div class="btn-group">
+                <span class="btn btn-disabled">Coming Soon</span>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Vatsal Labs. All rights reserved.</p>
+        <p><a href="privacy.html" class="policy-link">Privacy Policy</a></p>
+    </footer>
+
+</body>
+</html>
