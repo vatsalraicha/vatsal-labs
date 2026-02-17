@@ -43,7 +43,11 @@
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
         }
-
+        .visitor-stat {
+            color: var(--primary-color);
+            font-size: 0.95rem;
+            margin-top: 1rem;
+        }
         .card {
             background: var(--card-bg);
             border-radius: 12px;
@@ -138,6 +142,7 @@
     <header>
         <h1>Vatsal Labs</h1>
         <p>Productivity & Privacy Extensions for Chrome and Firefox</p>
+        <p class="visitor-stat">Trusted by <strong>830+</strong> visitors</p>
     </header>
 
     <div class="container">
@@ -183,7 +188,7 @@
                 <a href="https://addons.mozilla.org/en-US/firefox/addon/quickurlcopy/" target="_blank" class="btn btn-firefox">Firefox</a>
             </div>
         </div>
-        
+
         <div class="card">
             <span class="status-badge published">Published</span>
             <img src="icons/CleanSlate.png" alt="CleanSlate Logo" class="extension-icon">
