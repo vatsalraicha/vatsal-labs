@@ -152,6 +152,18 @@
         }
         .product:nth-of-type(even) { background: var(--bg-alt); }
         .product-inner { max-width: 900px; margin: 0 auto; }
+        .product-icon {
+            width: 104px;
+            height: 104px;
+            border-radius: 22px;
+            object-fit: contain;
+            margin: 0 auto 1.5rem;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.08);
+        }
+        html[data-theme="dark"] .product-icon {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.4);
+        }
         .product-eyebrow {
             font-size: 0.85rem;
             color: var(--text-muted);
@@ -359,6 +371,7 @@
     <!-- ArcTerm -->
     <section class="product" id="macos">
         <div class="product-inner">
+            <img src="icons/ArcTerm.png" alt="ArcTerm icon" class="product-icon">
             <p class="product-eyebrow">MacOS · Terminal</p>
             <h2>ArcTerm</h2>
             <p class="product-tagline">A modern terminal with built-in AI. Ask it to write commands with ⌘K — using a free local Gemma 4 model or your Claude CLI subscription.</p>
@@ -376,6 +389,7 @@
     <!-- SnapIt -->
     <section class="product">
         <div class="product-inner">
+            <img src="icons/SnapIt.png" alt="SnapIt icon" class="product-icon">
             <p class="product-eyebrow">MacOS · Screen Capture</p>
             <h2>SnapIt</h2>
             <p class="product-tagline">A native screenshot tool that lives in your menu bar. Scrolling capture, 13 annotation tools, built-in OCR, QR detection — zero third-party dependencies.</p>
