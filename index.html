@@ -87,7 +87,17 @@
             justify-content: space-between;
             font-size: 0.85rem;
         }
-        .nav-brand { font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+        .nav-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            color: var(--text);
+            letter-spacing: -0.01em;
+            text-decoration: none;
+        }
+        .nav-brand:hover { color: var(--text); }
+        .nav-logo { width: 22px; height: 22px; display: block; }
         .nav-links { display: flex; gap: 2rem; }
         .nav-links a {
             color: var(--text);
@@ -405,7 +415,10 @@
 
     <nav class="nav">
         <div class="nav-inner">
-            <span class="nav-brand">Vatsal Labs</span>
+            <a href="/" class="nav-brand">
+                <img src="/favicon.png" alt="" class="nav-logo">
+                <span>Vatsal Labs</span>
+            </a>
             <div class="nav-links">
                 <a href="#macos">MacOS Apps</a>
                 <a href="#extensions">Extensions</a>
