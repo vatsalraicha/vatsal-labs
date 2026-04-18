@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,293 +17,630 @@
     <meta name="twitter:image" content="https://www.vatsallabs.com/icons/ArcTerm.png">
     <style>
         :root {
-            --primary-color: #2563eb;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-secondary: #64748b;
-            --chrome-color: #50b66b;
-            --firefox-color: #ef7748;
-            --edge-color: #2e83c3;
+            --bg:          #ffffff;
+            --bg-alt:      #fbfbfd;
+            --bg-nav:      rgba(255, 255, 255, 0.72);
+            --border:      #d2d2d7;
+            --text:        #1d1d1f;
+            --text-muted:  #6e6e73;
+            --accent:      #0071e3;
+            --accent-hover:#0077ed;
+            --chrome:      #50b66b;
+            --firefox:     #ef7748;
+            --edge:        #2e83c3;
+            --card-bg:     #ffffff;
+            --card-shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 14px rgba(0,0,0,0.04);
+            --screenshot-bg: #f5f5f7;
+        }
+        html[data-theme="dark"] {
+            --bg:          #000000;
+            --bg-alt:      #111114;
+            --bg-nav:      rgba(22, 22, 23, 0.72);
+            --border:      #2a2a2d;
+            --text:        #f5f5f7;
+            --text-muted:  #a1a1a6;
+            --accent:      #2997ff;
+            --accent-hover:#4aa7ff;
+            --card-bg:     #1c1c1e;
+            --card-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 4px 14px rgba(0,0,0,0.3);
+            --screenshot-bg: #1c1c1e;
+        }
+
+        * { box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            font-family: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
             margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        header {
-            background: var(--card-bg);
-            padding: 3rem 1rem;
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { color: var(--accent-hover); }
+
+        /* ---------- Nav ---------- */
+        .nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-nav);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+        .nav-brand { font-weight: 600; color: var(--text); letter-spacing: -0.01em; }
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a {
+            color: var(--text);
+            opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+        .nav-links a:hover { opacity: 1; }
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            padding: 0.35rem;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s;
+        }
+        .theme-toggle:hover { background: rgba(128,128,128,0.15); }
+        .theme-toggle svg { width: 18px; height: 18px; }
+        html[data-theme="light"] .icon-sun { display: none; }
+        html[data-theme="dark"]  .icon-moon { display: none; }
+
+        /* ---------- Hero ---------- */
+        .hero {
             text-align: center;
-            border-bottom: 1px solid #e2e8f0;
+            padding: 5rem 1.5rem 3rem;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 600;
+            margin: 0 0 1rem;
+            letter-spacing: -0.03em;
+        }
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--text-muted);
+            margin: 0 0 2rem;
+            max-width: 40rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero-stats {
+            display: inline-flex;
+            gap: 0;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .hero-stats span + span::before {
+            content: "·";
+            margin: 0 0.75rem;
+            opacity: 0.5;
         }
 
-        header h1 { margin: 0; font-size: 2.5rem; color: var(--primary-color); }
-        header p { color: var(--text-secondary); margin-top: 0.5rem; font-size: 1.1rem; }
-
-        .container {
-            max-width: 1100px;
-            margin: 3rem auto;
-            padding: 0 1rem;
+        /* ---------- Product chapter ---------- */
+        .product {
+            padding: 5.5rem 1.5rem;
+            text-align: center;
         }
-        .section-title {
-            font-size: 1.5rem;
-            color: var(--text-main);
-            margin: 0 0 1.25rem;
-            letter-spacing: -0.01em;
-        }
-        .section + .section { margin-top: 3rem; }
-        .card-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-        .visitor-stat {
-            color: var(--primary-color);
-            font-size: 0.95rem;
-            margin-top: 1rem;
-        }
-        .card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid #e2e8f0;
-            align-items: flex-start;
-        }
-
-        .card:hover { 
-            transform: translateY(-5px); 
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Icon Styling */
-        .extension-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 12px;
+        .product:nth-of-type(even) { background: var(--bg-alt); }
+        .product-inner { max-width: 900px; margin: 0 auto; }
+        .product-icon {
+            width: 104px;
+            height: 104px;
+            border-radius: 22px;
             object-fit: contain;
-            margin-bottom: 1rem;
-            background-color: #f1f5f9;
+            margin: 0 auto 1.5rem;
+            display: block;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.08);
         }
-
-        .card h3 { margin-top: 0; margin-bottom: 0.5rem; font-size: 1.25rem; }
-
-        .card p { color: var(--text-secondary); flex-grow: 1; margin-bottom: 1rem; }
-        .tech-stack {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin: 0 0 1.25rem;
-            padding-top: 0.75rem;
-            border-top: 1px solid #e2e8f0;
-            width: 100%;
+        html[data-theme="dark"] .product-icon {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 2px 6px rgba(0,0,0,0.4);
         }
-        .tech-stack strong { color: var(--text-main); font-weight: 600; }
-
-        /* Button Styles */
-        .btn-group {
-            display: flex;
+        .product-eyebrow {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            margin: 0 0 0.75rem;
+        }
+        .product h2 {
+            font-size: clamp(2.25rem, 5vw, 3.5rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            margin: 0 0 0.75rem;
+        }
+        .product-tagline {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: var(--text-muted);
+            margin: 0 auto 1.75rem;
+            max-width: 36rem;
+        }
+        .product-subnote {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin: -0.75rem auto 1.75rem;
+            max-width: 36rem;
+            opacity: 0.85;
+        }
+        .product-cta {
+            display: inline-flex;
             gap: 0.5rem;
             flex-wrap: wrap;
-            margin-top: auto;
-            width: 100%;
+            justify-content: center;
+            margin-bottom: 3rem;
         }
-
-        .btn {
+        .pill {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0.5rem 1rem;
-            border-radius: 6px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: opacity 0.2s;
-            flex: 1;
-            color: white;
-            text-align: center;
+            height: 44px;
+            padding: 0 1.4rem;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+            border: 1px solid transparent;
         }
+        .pill-primary { background: var(--accent); color: #fff; }
+        .pill-primary:hover { background: var(--accent-hover); color: #fff; }
+        .pill-secondary {
+            background: transparent;
+            color: var(--accent);
+            border-color: var(--accent);
+        }
+        .pill-secondary:hover { background: var(--accent); color: #fff; }
 
-        .btn:hover { opacity: 0.9; text-decoration: none; }
-        
-        .btn-chrome { background-color: var(--chrome-color); }
-        .btn-firefox { background-color: var(--firefox-color); }
-        .btn-edge { background-color: var(--edge-color); }
-        .btn-mac { background-color: #111827; }
-        .btn-github { background-color: #475569; }
-        .btn-disabled { background-color: #cbd5e1; cursor: not-allowed; color: #64748b; }
-
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            border-top: 1px solid #e2e8f0;
-            margin-top: 4rem;
+        .carousel {
+            position: relative;
+            width: 100%;
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        .carousel-viewport {
+            overflow: hidden;
+            border-radius: 16px;
+            background: var(--screenshot-bg);
+            border: 1px solid var(--border);
+            aspect-ratio: 16 / 10;
+        }
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: background 0.2s, transform 0.2s;
+            padding: 0;
+            z-index: 2;
         }
+        .carousel-arrow:hover {
+            background: var(--bg);
+        }
+        .carousel-arrow:active {
+            transform: translateY(-50%) scale(0.94);
+        }
+        .carousel-arrow svg { width: 16px; height: 16px; }
+        .carousel-arrow-prev { left: 12px; }
+        .carousel-arrow-next { right: 12px; }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+        }
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            opacity: 0.35;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .carousel-dot:hover { opacity: 0.6; }
+        .carousel-dot.is-active { opacity: 1; transform: scale(1.15); }
 
-        a.policy-link { color: var(--primary-color); text-decoration: none; }
-        a.policy-link:hover { text-decoration: underline; }
+        .product-meta {
+            margin-top: 1.75rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .product-meta strong { color: var(--text); font-weight: 600; }
+
+        /* ---------- Extensions grid ---------- */
+        .extensions {
+            padding: 5.5rem 1.5rem;
+        }
+        .extensions-inner { max-width: 1100px; margin: 0 auto; }
+        .extensions-head {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        .extensions-head h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            margin: 0 0 0.5rem;
+        }
+        .extensions-head p {
+            color: var(--text-muted);
+            margin: 0;
+        }
+        .ext-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .ext-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .ext-card:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--card-shadow);
+        }
+        .ext-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            object-fit: contain;
+            margin-bottom: 1rem;
+            background: var(--screenshot-bg);
+        }
+        .ext-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 0 0 0.4rem;
+            letter-spacing: -0.01em;
+        }
+        .ext-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin: 0 0 1.25rem;
+            flex-grow: 1;
+        }
+        .ext-links {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .ext-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            padding: 0.35rem 0.8rem;
+            border-radius: 6px;
+            color: #fff;
+            background: #888;
+            transition: opacity 0.2s;
+        }
+        .ext-links a:hover { opacity: 0.88; color: #fff; }
+        .ext-links .store-chrome { background: var(--chrome); }
+        .ext-links .store-firefox { background: var(--firefox); }
+        .ext-links .store-edge { background: var(--edge); }
+
+        /* ---------- Footer ---------- */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+        footer a { color: var(--text-muted); }
+        footer a:hover { color: var(--accent); }
+
+        @media (max-width: 600px) {
+            .nav-links { gap: 1.25rem; }
+            .hero { padding-top: 3.5rem; }
+            .product { padding: 4rem 1.25rem; }
+            .extensions { padding: 4rem 1.25rem; }
+        }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Vatsal Labs</h1>
-        <p>Productivity & privacy tools for your browser — and your Mac.</p>
-        <div class="visitor-stat">
+    <nav class="nav">
+        <div class="nav-inner">
+            <span class="nav-brand">Vatsal Labs</span>
+            <div class="nav-links">
+                <a href="#macos">MacOS Apps</a>
+                <a href="#extensions">Extensions</a>
+                <a href="https://github.com/vatsalraicha" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.vatsalraicha.com" target="_blank" rel="noopener noreferrer">Vatsal Raicha</a>
+            </div>
+            <button class="theme-toggle" aria-label="Toggle theme" onclick="toggleTheme()">
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Productivity, built simply.</h1>
+        <p>Native MacOS apps and browser extensions for people who like their tools to feel sharp, fast, and out of the way.</p>
+        <div class="hero-stats">
             <span>2 MacOS Apps</span>
-            <span style="margin: 0 1rem; color: #cbd5e1;">|</span>
             <span>9 Extensions</span>
-            <span style="margin: 0 1rem; color: #cbd5e1;">|</span>
-            <span><strong>627</strong> Installs</span>
-            <span style="margin: 0 1rem; color: #cbd5e1;">|</span>
+            <span><strong style="color: var(--text);">627</strong> Installs</span>
             <span>3 Browsers</span>
-            <span style="margin: 0 1rem; color: #cbd5e1;">|</span>
             <span>10+ Countries</span>
         </div>
-    </header>
+    </section>
 
-    <div class="container">
-
-        <section class="section">
-            <h2 class="section-title">MacOS Apps</h2>
-            <div class="card-grid">
-
-                <div class="card">
-                    <img src="icons/ArcTerm.png" alt="ArcTerm Logo" class="extension-icon">
-                    <h3>ArcTerm</h3>
-                    <p>A terminal for macOS with the features I liked from Warp and Fig, plus built-in AI. Use a free local Gemma 4 model (Metal-accelerated) or your Claude CLI subscription — or both, with auto fallback. Open source, early stages, but the important features are there. Built with Claude Code.</p>
-                    <div class="tech-stack"><strong>Stack:</strong> Tauri v2 · Rust · TypeScript · xterm.js · llama.cpp (Metal)</div>
-                    <div class="btn-group">
-                        <a href="https://github.com/vatsalraicha/ArcTerm/releases/latest" target="_blank" rel="noopener noreferrer" class="btn btn-mac">Download</a>
-                        <a href="https://github.com/vatsalraicha/ArcTerm" target="_blank" rel="noopener noreferrer" class="btn btn-github">GitHub</a>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img src="icons/SnapIt.png" alt="SnapIt Logo" class="extension-icon">
-                    <h3>SnapIt</h3>
-                    <p>A native macOS screenshot tool that lives in your menu bar. Scrolling capture, 13 annotation tools, built-in OCR with multi-language support, QR detection, and smart file naming. Zero third-party dependencies.</p>
-                    <div class="tech-stack"><strong>Stack:</strong> Swift · ScreenCaptureKit · Vision · Cocoa · Carbon</div>
-                    <div class="btn-group">
-                        <a href="https://github.com/vatsalraicha/SnapIt" target="_blank" rel="noopener noreferrer" class="btn btn-github">GitHub</a>
-                    </div>
-                </div>
-
+    <!-- ArcTerm -->
+    <section class="product" id="macos">
+        <div class="product-inner">
+            <img src="icons/ArcTerm.png" alt="ArcTerm icon" class="product-icon">
+            <p class="product-eyebrow">MacOS · Terminal</p>
+            <h2>ArcTerm</h2>
+            <p class="product-tagline">A modern terminal with built-in AI. Ask it to write commands with ⌘K — using a free local Gemma 4 model or your Claude CLI subscription.</p>
+            <p class="product-subnote">Inspired by Warp and Fig. Rebuilt as open source, fully free — AI included.</p>
+            <div class="product-cta">
+                <a href="https://github.com/vatsalraicha/ArcTerm/releases/latest" target="_blank" rel="noopener noreferrer" class="pill pill-primary">Download</a>
+                <a href="https://github.com/vatsalraicha/ArcTerm" target="_blank" rel="noopener noreferrer" class="pill pill-secondary">View on GitHub</a>
             </div>
-        </section>
+            <div class="carousel" data-carousel>
+                <div class="carousel-viewport">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="screenshots/Arc_01.png" alt="ArcTerm screenshot 1"></div>
+                        <div class="carousel-slide"><img src="screenshots/Arc_02.png" alt="ArcTerm screenshot 2"></div>
+                        <div class="carousel-slide"><img src="screenshots/Arc_03.png" alt="ArcTerm screenshot 3"></div>
+                        <div class="carousel-slide"><img src="screenshots/Arc_04.png" alt="ArcTerm dark mode"></div>
+                    </div>
+                </div>
+                <button class="carousel-arrow carousel-arrow-prev" aria-label="Previous">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button class="carousel-arrow carousel-arrow-next" aria-label="Next">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+                <div class="carousel-dots">
+                    <button class="carousel-dot is-active" aria-label="Slide 1"></button>
+                    <button class="carousel-dot" aria-label="Slide 2"></button>
+                    <button class="carousel-dot" aria-label="Slide 3"></button>
+                    <button class="carousel-dot" aria-label="Slide 4"></button>
+                </div>
+            </div>
+            <p class="product-meta"><strong>Stack:</strong> Tauri v2 · Rust · TypeScript · xterm.js · llama.cpp (Metal) &nbsp;·&nbsp; <strong>Built with Claude Code.</strong></p>
+        </div>
+    </section>
 
-        <section class="section">
-            <h2 class="section-title">Browser Extensions</h2>
-            <div class="card-grid">
+    <!-- SnapIt -->
+    <section class="product">
+        <div class="product-inner">
+            <img src="icons/SnapIt.png" alt="SnapIt icon" class="product-icon">
+            <p class="product-eyebrow">MacOS · Screen Capture</p>
+            <h2>SnapIt</h2>
+            <p class="product-tagline">A native screenshot tool that lives in your menu bar. Scrolling capture, 13 annotation tools, built-in OCR, QR detection — zero third-party dependencies.</p>
+            <div class="product-cta">
+                <a href="https://github.com/vatsalraicha/SnapIt" target="_blank" rel="noopener noreferrer" class="pill pill-primary">View on GitHub</a>
+            </div>
+            <div class="carousel" data-carousel>
+                <div class="carousel-viewport">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="screenshots/SnapIt_01.png" alt="SnapIt screenshot 1"></div>
+                        <div class="carousel-slide"><img src="screenshots/SnapIt_02.png" alt="SnapIt screenshot 2"></div>
+                        <div class="carousel-slide"><img src="screenshots/SnapIt_03.png" alt="SnapIt screenshot 3"></div>
+                    </div>
+                </div>
+                <button class="carousel-arrow carousel-arrow-prev" aria-label="Previous">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button class="carousel-arrow carousel-arrow-next" aria-label="Next">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+                <div class="carousel-dots">
+                    <button class="carousel-dot is-active" aria-label="Slide 1"></button>
+                    <button class="carousel-dot" aria-label="Slide 2"></button>
+                    <button class="carousel-dot" aria-label="Slide 3"></button>
+                </div>
+            </div>
+            <p class="product-meta"><strong>Stack:</strong> Swift · ScreenCaptureKit · Vision · Cocoa · Carbon</p>
+        </div>
+    </section>
 
-                <div class="card">
-                    <img src="icons/RecordThatChromeTab.png" alt="RecordThatChromeTab Logo" class="extension-icon">
+    <!-- Extensions -->
+    <section class="extensions" id="extensions">
+        <div class="extensions-inner">
+            <div class="extensions-head">
+                <h2>Browser Extensions</h2>
+                <p>Small, focused tools for Chrome, Firefox, and Edge.</p>
+            </div>
+            <div class="ext-grid">
+
+                <div class="ext-card">
+                    <img src="icons/RecordThatChromeTab.png" alt="RecordThatChromeTab" class="ext-icon">
                     <h3>RecordThatChromeTab</h3>
                     <p>Seamlessly record your current tab for quick demos and tutorials.</p>
-                    <div class="btn-group">
-                        <a href="https://chromewebstore.google.com/detail/recordthatchrometab/bapijikfojhbjnpaabpgghmckenknodd" target="_blank" class="btn btn-chrome">Chrome</a>
+                    <div class="ext-links">
+                        <a href="https://chromewebstore.google.com/detail/recordthatchrometab/bapijikfojhbjnpaabpgghmckenknodd" target="_blank" class="store-chrome">Chrome</a>
                     </div>
                 </div>
 
-                <div class="card">
-                    <img src="icons/RecordThatEdgeTab.png" alt="RecordThatEdgeTab Logo" class="extension-icon">
+                <div class="ext-card">
+                    <img src="icons/RecordThatEdgeTab.png" alt="RecordThatEdgeTab" class="ext-icon">
                     <h3>RecordThatEdgeTab</h3>
                     <p>Seamlessly record your current tab for quick demos and tutorials.</p>
-                    <div class="btn-group">
-                        <a href="https://microsoftedge.microsoft.com/addons/detail/recordthatedgetab/mpkjbnneldommgacnoljaomgaiemfofb" target="_blank" class="btn btn-edge">Edge</a>
+                    <div class="ext-links">
+                        <a href="https://microsoftedge.microsoft.com/addons/detail/recordthatedgetab/mpkjbnneldommgacnoljaomgaiemfofb" target="_blank" class="store-edge">Edge</a>
                     </div>
                 </div>
 
-                <div class="card">
-                    <img src="icons/TabCapture.png" alt="Full Page Screen Capture Logo" class="extension-icon">
+                <div class="ext-card">
+                    <img src="icons/TabCapture.png" alt="TabCapture" class="ext-icon">
                     <h3>TabCapture</h3>
                     <p>Capture entire webpages, including scrolling areas, in a single image.</p>
-                    <div class="btn-group">
-                        <a href="https://chromewebstore.google.com/detail/tabcapture/gbbnobfmjlbkjjleckgkaabndnjfppeg" target="_blank" class="btn btn-chrome">Chrome</a>
-                        <a href="https://addons.mozilla.org/en-US/firefox/addon/full-page-screen-capture-tool/" target="_blank" class="btn btn-firefox">Firefox</a>
-                        <a href="https://microsoftedge.microsoft.com/addons/detail/tabcapture/idjbdpbnaanlglndbjmiigeokodpdbeb" target="_blank" class="btn btn-edge">Edge</a>
+                    <div class="ext-links">
+                        <a href="https://chromewebstore.google.com/detail/tabcapture/gbbnobfmjlbkjjleckgkaabndnjfppeg" target="_blank" class="store-chrome">Chrome</a>
+                        <a href="https://addons.mozilla.org/en-US/firefox/addon/full-page-screen-capture-tool/" target="_blank" class="store-firefox">Firefox</a>
+                        <a href="https://microsoftedge.microsoft.com/addons/detail/tabcapture/idjbdpbnaanlglndbjmiigeokodpdbeb" target="_blank" class="store-edge">Edge</a>
                     </div>
                 </div>
 
-                <div class="card">
-                    <img src="icons/QuickURLCopy.png" alt="QuickURLCopy Logo" class="extension-icon">
+                <div class="ext-card">
+                    <img src="icons/QuickURLCopy.png" alt="QuickURLCopy" class="ext-icon">
                     <h3>QuickURLCopy</h3>
                     <p>One-click utility to copy the current URL to your clipboard.</p>
-                    <div class="btn-group">
-                        <a href="https://addons.mozilla.org/en-US/firefox/addon/quickurlcopy/" target="_blank" class="btn btn-firefox">Firefox</a>
+                    <div class="ext-links">
+                        <a href="https://addons.mozilla.org/en-US/firefox/addon/quickurlcopy/" target="_blank" class="store-firefox">Firefox</a>
                     </div>
                 </div>
 
-                <div class="card">
-                    <img src="icons/CleanSlate.png" alt="CleanSlate Logo" class="extension-icon">
+                <div class="ext-card">
+                    <img src="icons/CleanSlate.png" alt="CleanSlate" class="ext-icon">
                     <h3>CleanSlate</h3>
                     <p>Block Meta, Amazon, and Google tracking across the web. Auto-decline cookie banners.</p>
-                    <div class="btn-group">
-                        <a href="https://chromewebstore.google.com/detail/cleanslate/dokiigfdmjccfbdbfbhicpjgajidnlod?authuser=0&hl=en-GB" target="_blank" class="btn btn-chrome">Chrome</a>
-                        <a href="https://addons.mozilla.org/en-US/firefox/addon/cleanslate/" target="_blank" class="btn btn-firefox">Firefox</a>
-                        <a href="https://microsoftedge.microsoft.com/addons/detail/cleanslate/bbhiaglppjpejegphfacbdjngcaondhh" target="_blank" class="btn btn-edge">Edge</a>
+                    <div class="ext-links">
+                        <a href="https://chromewebstore.google.com/detail/cleanslate/dokiigfdmjccfbdbfbhicpjgajidnlod?authuser=0&hl=en-GB" target="_blank" class="store-chrome">Chrome</a>
+                        <a href="https://addons.mozilla.org/en-US/firefox/addon/cleanslate/" target="_blank" class="store-firefox">Firefox</a>
+                        <a href="https://microsoftedge.microsoft.com/addons/detail/cleanslate/bbhiaglppjpejegphfacbdjngcaondhh" target="_blank" class="store-edge">Edge</a>
                     </div>
                 </div>
 
-                <div class="card">
-                    <img src="icons/Pinpoint.png" alt="Pinpoint Logo" class="extension-icon">
+                <div class="ext-card">
+                    <img src="icons/Pinpoint.png" alt="Pinpoint" class="ext-icon">
                     <h3>Pinpoint</h3>
-                    <p>Create shareable links to any text on any webpage - with pinpoint precision.</p>
-                    <div class="btn-group">
-                        <a href="https://chromewebstore.google.com/detail/pinpoint/lmnonaoaaddagalebcfgnkdbeoigjaoh?authuser=0&hl=en-GB" target="_blank" class="btn btn-chrome">Chrome</a>
-                        <a href="https://microsoftedge.microsoft.com/addons/detail/pinpoint/fladhfjjjbmjighdbfecdgjcfahichgi" target="_blank" class="btn btn-edge">Edge</a>
+                    <p>Create shareable links to any text on any webpage — with pinpoint precision.</p>
+                    <div class="ext-links">
+                        <a href="https://chromewebstore.google.com/detail/pinpoint/lmnonaoaaddagalebcfgnkdbeoigjaoh?authuser=0&hl=en-GB" target="_blank" class="store-chrome">Chrome</a>
+                        <a href="https://microsoftedge.microsoft.com/addons/detail/pinpoint/fladhfjjjbmjighdbfecdgjcfahichgi" target="_blank" class="store-edge">Edge</a>
                     </div>
                 </div>
 
-                <div class="card">
-                    <img src="icons/My%20YT%20Blocker.png" alt="My YT Blocker Logo" class="extension-icon">
+                <div class="ext-card">
+                    <img src="icons/My%20YT%20Blocker.png" alt="My YT Blocker" class="ext-icon">
                     <h3>My YT Blocker</h3>
                     <p>Take control of your focus by blocking specific YouTube content.</p>
-                    <div class="btn-group">
-                        <a href="https://chromewebstore.google.com/detail/my-yt-blocker/ddjpielpgnodfjohcgmclcmnlidgfned" target="_blank" class="btn btn-chrome">Chrome</a>
-                        <a href="https://addons.mozilla.org/en-US/firefox/addon/my-yt-blocker/" target="_blank" class="btn btn-firefox">Firefox</a>
-                        <a href="https://microsoftedge.microsoft.com/addons/detail/my-yt-blocker/apnlhnkmhgdcdehldbmcppodlfomklgf" target="_blank" class="btn btn-edge">Edge</a>
+                    <div class="ext-links">
+                        <a href="https://chromewebstore.google.com/detail/my-yt-blocker/ddjpielpgnodfjohcgmclcmnlidgfned" target="_blank" class="store-chrome">Chrome</a>
+                        <a href="https://addons.mozilla.org/en-US/firefox/addon/my-yt-blocker/" target="_blank" class="store-firefox">Firefox</a>
+                        <a href="https://microsoftedge.microsoft.com/addons/detail/my-yt-blocker/apnlhnkmhgdcdehldbmcppodlfomklgf" target="_blank" class="store-edge">Edge</a>
                     </div>
                 </div>
 
-                <div class="card">
-                    <img src="icons/SideGem%202.png" alt="SideGem 2 Logo" class="extension-icon">
+                <div class="ext-card">
+                    <img src="icons/SideGem%202.png" alt="SideGem 2" class="ext-icon">
                     <h3>SideGem 2</h3>
                     <p>A powerful sidebar assistant to enhance your browsing workflow.</p>
-                    <div class="btn-group">
-                        <a href="https://chromewebstore.google.com/detail/sidegem-2/iofbaomimggpkpjbgmhadpgkfhkeoiho" target="_blank" class="btn btn-chrome">Chrome</a>
+                    <div class="ext-links">
+                        <a href="https://chromewebstore.google.com/detail/sidegem-2/iofbaomimggpkpjbgmhadpgkfhkeoiho" target="_blank" class="store-chrome">Chrome</a>
                     </div>
                 </div>
 
-                <div class="card">
-                    <img src="icons/Gemini%20Page%20Summarizer.png" alt="Gemini Page Summarizer Logo" class="extension-icon">
+                <div class="ext-card">
+                    <img src="icons/Gemini%20Page%20Summarizer.png" alt="Gemini Page Summarizer" class="ext-icon">
                     <h3>Gemini Page Summarizer</h3>
                     <p>Instantly summarize web pages using AI directly within your browser.</p>
-                    <div class="btn-group">
-                        <a href="https://chromewebstore.google.com/detail/gemini-page-summarizer/jaelijgjppjjnadnmcndakfaejlcchaj" target="_blank" class="btn btn-chrome">Chrome</a>
+                    <div class="ext-links">
+                        <a href="https://chromewebstore.google.com/detail/gemini-page-summarizer/jaelijgjppjjnadnmcndakfaejlcchaj" target="_blank" class="store-chrome">Chrome</a>
                     </div>
                 </div>
 
             </div>
-        </section>
-
-    </div>
+        </div>
+    </section>
 
     <footer>
-        <p>&copy; 2026 Vatsal Labs. All rights reserved.</p>
-        <p><a href="privacy.html" class="policy-link" target="_blank" rel="noopener noreferrer">Privacy Policy</a></p>
+        <p>&copy; 2026 Vatsal Labs &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="https://github.com/vatsalraicha" target="_blank" rel="noopener noreferrer">GitHub</a></p>
     </footer>
+
+    <script>
+        (function() {
+            const stored = localStorage.getItem('theme');
+            const prefers = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            const initial = stored || prefers;
+            document.documentElement.setAttribute('data-theme', initial);
+        })();
+        function toggleTheme() {
+            const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+        }
+
+        document.querySelectorAll('[data-carousel]').forEach(carousel => {
+            const track = carousel.querySelector('.carousel-track');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            const prev = carousel.querySelector('.carousel-arrow-prev');
+            const next = carousel.querySelector('.carousel-arrow-next');
+            let index = 0;
+            function go(i) {
+                index = (i + slides.length) % slides.length;
+                track.style.transform = `translateX(-${index * 100}%)`;
+                dots.forEach((d, di) => d.classList.toggle('is-active', di === index));
+            }
+            prev.addEventListener('click', () => go(index - 1));
+            next.addEventListener('click', () => go(index + 1));
+            dots.forEach((d, di) => d.addEventListener('click', () => go(di)));
+            carousel.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') go(index - 1);
+                if (e.key === 'ArrowRight') go(index + 1);
+            });
+            carousel.tabIndex = 0;
+        });
+    </script>
 
 </body>
 </html>
