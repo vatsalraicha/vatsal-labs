@@ -183,6 +183,13 @@
             margin: 0 auto 1.75rem;
             max-width: 36rem;
         }
+        .product-subnote {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin: -0.75rem auto 1.75rem;
+            max-width: 36rem;
+            opacity: 0.85;
+        }
         .product-cta {
             display: inline-flex;
             gap: 0.5rem;
@@ -211,31 +218,84 @@
         }
         .pill-secondary:hover { background: var(--accent); color: #fff; }
 
-        .product-hero-img {
+        .carousel {
+            position: relative;
             width: 100%;
             max-width: 820px;
             margin: 0 auto;
-            aspect-ratio: 16 / 10;
+        }
+        .carousel-viewport {
+            overflow: hidden;
             border-radius: 16px;
             background: var(--screenshot-bg);
             border: 1px solid var(--border);
+            aspect-ratio: 16 / 10;
+        }
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
         }
-        .product-hero-img img {
-            width: 100%;
-            height: 100%;
+        .carousel-slide img {
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
             object-position: center;
         }
-        .product-hero-placeholder {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            text-align: center;
-            padding: 1rem;
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: background 0.2s, transform 0.2s;
+            padding: 0;
+            z-index: 2;
         }
+        .carousel-arrow:hover {
+            background: var(--bg);
+        }
+        .carousel-arrow:active {
+            transform: translateY(-50%) scale(0.94);
+        }
+        .carousel-arrow svg { width: 16px; height: 16px; }
+        .carousel-arrow-prev { left: 12px; }
+        .carousel-arrow-next { right: 12px; }
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.25rem;
+        }
+        .carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--text-muted);
+            opacity: 0.35;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            transition: opacity 0.2s, transform 0.2s;
+        }
+        .carousel-dot:hover { opacity: 0.6; }
+        .carousel-dot.is-active { opacity: 1; transform: scale(1.15); }
 
         .product-meta {
             margin-top: 1.75rem;
@@ -375,12 +435,32 @@
             <p class="product-eyebrow">MacOS · Terminal</p>
             <h2>ArcTerm</h2>
             <p class="product-tagline">A modern terminal with built-in AI. Ask it to write commands with ⌘K — using a free local Gemma 4 model or your Claude CLI subscription.</p>
+            <p class="product-subnote">Inspired by Warp and Fig. Rebuilt as open source, fully free — AI included.</p>
             <div class="product-cta">
                 <a href="https://github.com/vatsalraicha/ArcTerm/releases/latest" target="_blank" rel="noopener noreferrer" class="pill pill-primary">Download</a>
                 <a href="https://github.com/vatsalraicha/ArcTerm" target="_blank" rel="noopener noreferrer" class="pill pill-secondary">View on GitHub</a>
             </div>
-            <div class="product-hero-img">
-                <img src="screenshots/arcterm-hero.png" alt="ArcTerm screenshot" onerror="this.parentElement.innerHTML='<div class=&quot;product-hero-placeholder&quot;>Add screenshots/arcterm-hero.png</div>'">
+            <div class="carousel" data-carousel>
+                <div class="carousel-viewport">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="screenshots/Arc_01.png" alt="ArcTerm screenshot 1"></div>
+                        <div class="carousel-slide"><img src="screenshots/Arc_02.png" alt="ArcTerm screenshot 2"></div>
+                        <div class="carousel-slide"><img src="screenshots/Arc_03.png" alt="ArcTerm screenshot 3"></div>
+                        <div class="carousel-slide"><img src="screenshots/Arc_04.png" alt="ArcTerm dark mode"></div>
+                    </div>
+                </div>
+                <button class="carousel-arrow carousel-arrow-prev" aria-label="Previous">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button class="carousel-arrow carousel-arrow-next" aria-label="Next">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+                <div class="carousel-dots">
+                    <button class="carousel-dot is-active" aria-label="Slide 1"></button>
+                    <button class="carousel-dot" aria-label="Slide 2"></button>
+                    <button class="carousel-dot" aria-label="Slide 3"></button>
+                    <button class="carousel-dot" aria-label="Slide 4"></button>
+                </div>
             </div>
             <p class="product-meta"><strong>Stack:</strong> Tauri v2 · Rust · TypeScript · xterm.js · llama.cpp (Metal) &nbsp;·&nbsp; <strong>Built with Claude Code.</strong></p>
         </div>
@@ -396,8 +476,25 @@
             <div class="product-cta">
                 <a href="https://github.com/vatsalraicha/SnapIt" target="_blank" rel="noopener noreferrer" class="pill pill-primary">View on GitHub</a>
             </div>
-            <div class="product-hero-img">
-                <img src="screenshots/snapit-hero.png" alt="SnapIt screenshot" onerror="this.parentElement.innerHTML='<div class=&quot;product-hero-placeholder&quot;>Add screenshots/snapit-hero.png</div>'">
+            <div class="carousel" data-carousel>
+                <div class="carousel-viewport">
+                    <div class="carousel-track">
+                        <div class="carousel-slide"><img src="screenshots/SnapIt_01.png" alt="SnapIt screenshot 1"></div>
+                        <div class="carousel-slide"><img src="screenshots/SnapIt_02.png" alt="SnapIt screenshot 2"></div>
+                        <div class="carousel-slide"><img src="screenshots/SnapIt_03.png" alt="SnapIt screenshot 3"></div>
+                    </div>
+                </div>
+                <button class="carousel-arrow carousel-arrow-prev" aria-label="Previous">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button class="carousel-arrow carousel-arrow-next" aria-label="Next">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+                <div class="carousel-dots">
+                    <button class="carousel-dot is-active" aria-label="Slide 1"></button>
+                    <button class="carousel-dot" aria-label="Slide 2"></button>
+                    <button class="carousel-dot" aria-label="Slide 3"></button>
+                </div>
             </div>
             <p class="product-meta"><strong>Stack:</strong> Swift · ScreenCaptureKit · Vision · Cocoa · Carbon</p>
         </div>
@@ -520,6 +617,28 @@
             document.documentElement.setAttribute('data-theme', next);
             localStorage.setItem('theme', next);
         }
+
+        document.querySelectorAll('[data-carousel]').forEach(carousel => {
+            const track = carousel.querySelector('.carousel-track');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const dots = carousel.querySelectorAll('.carousel-dot');
+            const prev = carousel.querySelector('.carousel-arrow-prev');
+            const next = carousel.querySelector('.carousel-arrow-next');
+            let index = 0;
+            function go(i) {
+                index = (i + slides.length) % slides.length;
+                track.style.transform = `translateX(-${index * 100}%)`;
+                dots.forEach((d, di) => d.classList.toggle('is-active', di === index));
+            }
+            prev.addEventListener('click', () => go(index - 1));
+            next.addEventListener('click', () => go(index + 1));
+            dots.forEach((d, di) => d.addEventListener('click', () => go(di)));
+            carousel.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') go(index - 1);
+                if (e.key === 'ArrowRight') go(index + 1);
+            });
+            carousel.tabIndex = 0;
+        });
     </script>
 
 </body>
