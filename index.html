@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vatsal Labs - Browser Extensions</title>
-    <meta name="description" content="Vatsal Labs builds productivity and privacy extensions for Chrome, Firefox, and Edge — screen capture, tracker blocking, tab recording, AI summaries, and more.">
+    <title>Vatsal Labs - Browser Extensions & MacOS Apps</title>
+    <meta name="description" content="Vatsal Labs builds productivity and privacy tools — browser extensions for Chrome, Firefox, and Edge, plus native MacOS apps for terminal and screen capture.">
     <link rel="canonical" href="https://www.vatsallabs.com/" />
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.vatsallabs.com/">
-    <meta property="og:title" content="Vatsal Labs - Browser Extensions">
-    <meta property="og:description" content="Productivity and privacy extensions for Chrome, Firefox, and Edge.">
-    <meta property="og:image" content="https://www.vatsallabs.com/icons/CleanSlate.png">
+    <meta property="og:title" content="Vatsal Labs - Browser Extensions & MacOS Apps">
+    <meta property="og:description" content="Productivity and privacy tools for your browser and your Mac.">
+    <meta property="og:image" content="https://www.vatsallabs.com/icons/ArcTerm.png">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Vatsal Labs - Browser Extensions">
-    <meta name="twitter:description" content="Productivity and privacy extensions for Chrome, Firefox, and Edge.">
-    <meta name="twitter:image" content="https://www.vatsallabs.com/icons/CleanSlate.png">
+    <meta name="twitter:title" content="Vatsal Labs - Browser Extensions & MacOS Apps">
+    <meta name="twitter:description" content="Productivity and privacy tools for your browser and your Mac.">
+    <meta name="twitter:image" content="https://www.vatsallabs.com/icons/ArcTerm.png">
     <style>
         :root {
             --primary-color: #2563eb;
@@ -50,6 +50,15 @@
             max-width: 1100px;
             margin: 3rem auto;
             padding: 0 1rem;
+        }
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin: 0 0 1.25rem;
+            letter-spacing: -0.01em;
+        }
+        .section + .section { margin-top: 3rem; }
+        .card-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 2rem;
@@ -86,22 +95,18 @@
             background-color: #f1f5f9;
         }
 
-        .card h3 { margin-top: 0.5rem; margin-bottom: 0.5rem; font-size: 1.25rem; }
-        
-        .status-badge { 
-            display: inline-block; 
-            padding: 0.25rem 0.75rem; 
-            border-radius: 999px; 
-            font-size: 0.75rem; 
-            font-weight: bold; 
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 1rem;
-        }
-        .status-badge.published { background: #dcfce7; color: #166534; }
-        .status-badge.review { background: #fef9c3; color: #854d0e; }
+        .card h3 { margin-top: 0; margin-bottom: 0.5rem; font-size: 1.25rem; }
 
-        .card p { color: var(--text-secondary); flex-grow: 1; margin-bottom: 1.5rem; }
+        .card p { color: var(--text-secondary); flex-grow: 1; margin-bottom: 1rem; }
+        .tech-stack {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin: 0 0 1.25rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #e2e8f0;
+            width: 100%;
+        }
+        .tech-stack strong { color: var(--text-main); font-weight: 600; }
 
         /* Button Styles */
         .btn-group {
@@ -132,6 +137,8 @@
         .btn-chrome { background-color: var(--chrome-color); }
         .btn-firefox { background-color: var(--firefox-color); }
         .btn-edge { background-color: var(--edge-color); }
+        .btn-mac { background-color: #111827; }
+        .btn-github { background-color: #475569; }
         .btn-disabled { background-color: #cbd5e1; cursor: not-allowed; color: #64748b; }
 
         footer {
@@ -152,8 +159,10 @@
 
     <header>
         <h1>Vatsal Labs</h1>
-        <p>Productivity & Privacy Extensions for Chrome and Firefox</p>
+        <p>Productivity & privacy tools for your browser — and your Mac.</p>
         <div class="visitor-stat">
+            <span>2 MacOS Apps</span>
+            <span style="margin: 0 1rem; color: #cbd5e1;">|</span>
             <span>9 Extensions</span>
             <span style="margin: 0 1rem; color: #cbd5e1;">|</span>
             <span><strong>627</strong> Installs</span>
@@ -165,103 +174,129 @@
     </header>
 
     <div class="container">
-        
-        <div class="card">
-            <span class="status-badge published">Published</span>
-            <img src="icons/RecordThatChromeTab.png" alt="RecordThatChromeTab Logo" class="extension-icon">
-            <h3>RecordThatChromeTab</h3>
-            <p>Seamlessly record your current tab for quick demos and tutorials.</p>
-            <div class="btn-group">
-                <a href="https://chromewebstore.google.com/detail/recordthatchrometab/bapijikfojhbjnpaabpgghmckenknodd" target="_blank" class="btn btn-chrome">Chrome</a>
-            </div>
-        </div>
-        
-        <div class="card">
-            <span class="status-badge published">Published</span>
-            <img src="icons/RecordThatEdgeTab.png" alt="RecordThatEdgeTab Logo" class="extension-icon">
-            <h3>RecordThatEdgeTab</h3>
-            <p>Seamlessly record your current tab for quick demos and tutorials.</p>
-            <div class="btn-group">
-                <a href="https://microsoftedge.microsoft.com/addons/detail/recordthatedgetab/mpkjbnneldommgacnoljaomgaiemfofb" target="_blank" class="btn btn-edge">Edge</a>
-            </div>
-        </div>
 
-        <div class="card">
-            <span class="status-badge published">Published</span>
-            <img src="icons/TabCapture.png" alt="Full Page Screen Capture Logo" class="extension-icon">
-            <h3>TabCapture</h3>
-            <p>Capture entire webpages, including scrolling areas, in a single image.</p>
-            <div class="btn-group">
-                <a href="https://chromewebstore.google.com/detail/tabcapture/gbbnobfmjlbkjjleckgkaabndnjfppeg" target="_blank" class="btn btn-chrome">Chrome</a>
-                <a href="https://addons.mozilla.org/en-US/firefox/addon/full-page-screen-capture-tool/" target="_blank" class="btn btn-firefox">Firefox</a>
-                <a href="https://microsoftedge.microsoft.com/addons/detail/tabcapture/idjbdpbnaanlglndbjmiigeokodpdbeb" target="_blank" class="btn btn-edge">Edge</a>
-            </div>
-        </div>
-        
-        <div class="card">
-            <span class="status-badge published">Published</span>
-            <img src="icons/QuickURLCopy.png" alt="QuickURLCopy Logo" class="extension-icon">
-            <h3>QuickURLCopy</h3>
-            <p>One-click utility to copy the current URL to your clipboard.</p>
-            <div class="btn-group">
-                <a href="https://addons.mozilla.org/en-US/firefox/addon/quickurlcopy/" target="_blank" class="btn btn-firefox">Firefox</a>
-            </div>
-        </div>
+        <section class="section">
+            <h2 class="section-title">MacOS Apps</h2>
+            <div class="card-grid">
 
-        <div class="card">
-            <span class="status-badge published">Published</span>
-            <img src="icons/CleanSlate.png" alt="CleanSlate Logo" class="extension-icon">
-            <h3>CleanSlate</h3>
-            <p>Block Meta, Amazon, and Google tracking across the web. Auto-decline cookie banners.</p>
-            <div class="btn-group">
-                <a href="https://chromewebstore.google.com/detail/cleanslate/dokiigfdmjccfbdbfbhicpjgajidnlod?authuser=0&hl=en-GB" target="_blank" class="btn btn-chrome">Chrome</a>
-                <a href="https://addons.mozilla.org/en-US/firefox/addon/cleanslate/" target="_blank" class="btn btn-firefox">Firefox</a>
-                <a href="https://microsoftedge.microsoft.com/addons/detail/cleanslate/bbhiaglppjpejegphfacbdjngcaondhh" target="_blank" class="btn btn-edge">Edge</a>
-            </div>
-        </div>
+                <div class="card">
+                    <img src="icons/ArcTerm.png" alt="ArcTerm Logo" class="extension-icon">
+                    <h3>ArcTerm</h3>
+                    <p>A terminal for macOS with the features I liked from Warp and Fig, plus built-in AI. Use a free local Gemma 4 model (Metal-accelerated) or your Claude CLI subscription — or both, with auto fallback. Open source, early stages, but the important features are there. Built with Claude Code.</p>
+                    <div class="tech-stack"><strong>Stack:</strong> Tauri v2 · Rust · TypeScript · xterm.js · llama.cpp (Metal)</div>
+                    <div class="btn-group">
+                        <a href="https://github.com/vatsalraicha/ArcTerm/releases/latest" target="_blank" rel="noopener noreferrer" class="btn btn-mac">Download</a>
+                        <a href="https://github.com/vatsalraicha/ArcTerm" target="_blank" rel="noopener noreferrer" class="btn btn-github">GitHub</a>
+                    </div>
+                </div>
 
-        <div class="card">
-            <span class="status-badge published">Published</span>
-            <img src="icons/Pinpoint.png" alt="Pinpoint Logo" class="extension-icon">
-            <h3>Pinpoint</h3>
-            <p>Create shareable links to any text on any webpage - with pinpoint precision.</p>
-            <div class="btn-group">
-                <a href="https://chromewebstore.google.com/detail/pinpoint/lmnonaoaaddagalebcfgnkdbeoigjaoh?authuser=0&hl=en-GB" target="_blank" class="btn btn-chrome">Chrome</a>
-                <a href="https://microsoftedge.microsoft.com/addons/detail/pinpoint/fladhfjjjbmjighdbfecdgjcfahichgi" target="_blank" class="btn btn-edge">Edge</a>
-            </div>
-        </div>
+                <div class="card">
+                    <img src="icons/SnapIt.png" alt="SnapIt Logo" class="extension-icon">
+                    <h3>SnapIt</h3>
+                    <p>A native macOS screenshot tool that lives in your menu bar. Scrolling capture, 13 annotation tools, built-in OCR with multi-language support, QR detection, and smart file naming. Zero third-party dependencies.</p>
+                    <div class="tech-stack"><strong>Stack:</strong> Swift · ScreenCaptureKit · Vision · Cocoa · Carbon</div>
+                    <div class="btn-group">
+                        <a href="https://github.com/vatsalraicha/SnapIt" target="_blank" rel="noopener noreferrer" class="btn btn-github">GitHub</a>
+                    </div>
+                </div>
 
-        <div class="card">
-            <span class="status-badge published">Published</span>
-            <img src="icons/My%20YT%20Blocker.png" alt="My YT Blocker Logo" class="extension-icon">
-            <h3>My YT Blocker</h3>
-            <p>Take control of your focus by blocking specific YouTube content.</p>
-            <div class="btn-group">
-                <a href="https://chromewebstore.google.com/detail/my-yt-blocker/ddjpielpgnodfjohcgmclcmnlidgfned" target="_blank" class="btn btn-chrome">Chrome</a>
-                <a href="https://addons.mozilla.org/en-US/firefox/addon/my-yt-blocker/" target="_blank" class="btn btn-firefox">Firefox</a>
-                <a href="https://microsoftedge.microsoft.com/addons/detail/my-yt-blocker/apnlhnkmhgdcdehldbmcppodlfomklgf" target="_blank" class="btn btn-edge">Edge</a>
             </div>
-        </div>
+        </section>
 
-        <div class="card">
-            <span class="status-badge published">Published</span>
-            <img src="icons/SideGem%202.png" alt="SideGem 2 Logo" class="extension-icon">
-            <h3>SideGem 2</h3>
-            <p>A powerful sidebar assistant to enhance your browsing workflow.</p>
-            <div class="btn-group">
-                <a href="https://chromewebstore.google.com/detail/sidegem-2/iofbaomimggpkpjbgmhadpgkfhkeoiho" target="_blank" class="btn btn-chrome">Chrome</a>
-            </div>
-        </div>
+        <section class="section">
+            <h2 class="section-title">Browser Extensions</h2>
+            <div class="card-grid">
 
-        <div class="card">
-            <span class="status-badge published">Published</span>
-            <img src="icons/Gemini%20Page%20Summarizer.png" alt="Gemini Page Summarizer Logo" class="extension-icon">
-            <h3>Gemini Page Summarizer</h3>
-            <p>Instantly summarize web pages using AI directly within your browser.</p>
-            <div class="btn-group">
-                <a href="https://chromewebstore.google.com/detail/gemini-page-summarizer/jaelijgjppjjnadnmcndakfaejlcchaj" target="_blank" class="btn btn-chrome">Chrome</a>
+                <div class="card">
+                    <img src="icons/RecordThatChromeTab.png" alt="RecordThatChromeTab Logo" class="extension-icon">
+                    <h3>RecordThatChromeTab</h3>
+                    <p>Seamlessly record your current tab for quick demos and tutorials.</p>
+                    <div class="btn-group">
+                        <a href="https://chromewebstore.google.com/detail/recordthatchrometab/bapijikfojhbjnpaabpgghmckenknodd" target="_blank" class="btn btn-chrome">Chrome</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="icons/RecordThatEdgeTab.png" alt="RecordThatEdgeTab Logo" class="extension-icon">
+                    <h3>RecordThatEdgeTab</h3>
+                    <p>Seamlessly record your current tab for quick demos and tutorials.</p>
+                    <div class="btn-group">
+                        <a href="https://microsoftedge.microsoft.com/addons/detail/recordthatedgetab/mpkjbnneldommgacnoljaomgaiemfofb" target="_blank" class="btn btn-edge">Edge</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="icons/TabCapture.png" alt="Full Page Screen Capture Logo" class="extension-icon">
+                    <h3>TabCapture</h3>
+                    <p>Capture entire webpages, including scrolling areas, in a single image.</p>
+                    <div class="btn-group">
+                        <a href="https://chromewebstore.google.com/detail/tabcapture/gbbnobfmjlbkjjleckgkaabndnjfppeg" target="_blank" class="btn btn-chrome">Chrome</a>
+                        <a href="https://addons.mozilla.org/en-US/firefox/addon/full-page-screen-capture-tool/" target="_blank" class="btn btn-firefox">Firefox</a>
+                        <a href="https://microsoftedge.microsoft.com/addons/detail/tabcapture/idjbdpbnaanlglndbjmiigeokodpdbeb" target="_blank" class="btn btn-edge">Edge</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="icons/QuickURLCopy.png" alt="QuickURLCopy Logo" class="extension-icon">
+                    <h3>QuickURLCopy</h3>
+                    <p>One-click utility to copy the current URL to your clipboard.</p>
+                    <div class="btn-group">
+                        <a href="https://addons.mozilla.org/en-US/firefox/addon/quickurlcopy/" target="_blank" class="btn btn-firefox">Firefox</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="icons/CleanSlate.png" alt="CleanSlate Logo" class="extension-icon">
+                    <h3>CleanSlate</h3>
+                    <p>Block Meta, Amazon, and Google tracking across the web. Auto-decline cookie banners.</p>
+                    <div class="btn-group">
+                        <a href="https://chromewebstore.google.com/detail/cleanslate/dokiigfdmjccfbdbfbhicpjgajidnlod?authuser=0&hl=en-GB" target="_blank" class="btn btn-chrome">Chrome</a>
+                        <a href="https://addons.mozilla.org/en-US/firefox/addon/cleanslate/" target="_blank" class="btn btn-firefox">Firefox</a>
+                        <a href="https://microsoftedge.microsoft.com/addons/detail/cleanslate/bbhiaglppjpejegphfacbdjngcaondhh" target="_blank" class="btn btn-edge">Edge</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="icons/Pinpoint.png" alt="Pinpoint Logo" class="extension-icon">
+                    <h3>Pinpoint</h3>
+                    <p>Create shareable links to any text on any webpage - with pinpoint precision.</p>
+                    <div class="btn-group">
+                        <a href="https://chromewebstore.google.com/detail/pinpoint/lmnonaoaaddagalebcfgnkdbeoigjaoh?authuser=0&hl=en-GB" target="_blank" class="btn btn-chrome">Chrome</a>
+                        <a href="https://microsoftedge.microsoft.com/addons/detail/pinpoint/fladhfjjjbmjighdbfecdgjcfahichgi" target="_blank" class="btn btn-edge">Edge</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="icons/My%20YT%20Blocker.png" alt="My YT Blocker Logo" class="extension-icon">
+                    <h3>My YT Blocker</h3>
+                    <p>Take control of your focus by blocking specific YouTube content.</p>
+                    <div class="btn-group">
+                        <a href="https://chromewebstore.google.com/detail/my-yt-blocker/ddjpielpgnodfjohcgmclcmnlidgfned" target="_blank" class="btn btn-chrome">Chrome</a>
+                        <a href="https://addons.mozilla.org/en-US/firefox/addon/my-yt-blocker/" target="_blank" class="btn btn-firefox">Firefox</a>
+                        <a href="https://microsoftedge.microsoft.com/addons/detail/my-yt-blocker/apnlhnkmhgdcdehldbmcppodlfomklgf" target="_blank" class="btn btn-edge">Edge</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="icons/SideGem%202.png" alt="SideGem 2 Logo" class="extension-icon">
+                    <h3>SideGem 2</h3>
+                    <p>A powerful sidebar assistant to enhance your browsing workflow.</p>
+                    <div class="btn-group">
+                        <a href="https://chromewebstore.google.com/detail/sidegem-2/iofbaomimggpkpjbgmhadpgkfhkeoiho" target="_blank" class="btn btn-chrome">Chrome</a>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="icons/Gemini%20Page%20Summarizer.png" alt="Gemini Page Summarizer Logo" class="extension-icon">
+                    <h3>Gemini Page Summarizer</h3>
+                    <p>Instantly summarize web pages using AI directly within your browser.</p>
+                    <div class="btn-group">
+                        <a href="https://chromewebstore.google.com/detail/gemini-page-summarizer/jaelijgjppjjnadnmcndakfaejlcchaj" target="_blank" class="btn btn-chrome">Chrome</a>
+                    </div>
+                </div>
+
             </div>
-        </div>
+        </section>
 
     </div>
 
